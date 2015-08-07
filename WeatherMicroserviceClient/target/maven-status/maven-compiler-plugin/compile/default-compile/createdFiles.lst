@@ -1,0 +1,8 @@
+com\infy\ms\client\weather\WeatherServiceClientApplication.class
+com\infy\ms\client\model\FWeather.class
+com\infy\ms\client\model\Weather.class
+com\infy\ms\client\model\WeatherAggregated.class
+com\infy\ms\client\model\ForecastDetails.class
+com\infy\ms\client\weather\WeatherServiceClient.class
+com\infy\ms\client\model\Forecast.class
+com\infy\ms\client\model\Temperature.class
