@@ -1,0 +1,4 @@
+com\infy\model\Temperature.class
+com\infy\microservice\rest\WeatherServiceApplication.class
+com\infy\microservice\rest\WeatherForecastController.class
+com\infy\model\Weather.class
