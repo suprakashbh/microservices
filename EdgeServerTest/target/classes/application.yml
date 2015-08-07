@@ -1,0 +1,29 @@
+server:
+  port: 8765
+  
+info:
+  component: Zuul Server
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    weatherclient:
+      path: /weatherclient/**
+      stripPrefix: false
+ribbon:
+    readTimeout :5000
+    hystrixTimeout:4500
+    execTime:4000
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: INFO
