@@ -1,6 +1,8 @@
 spring:
   application:
     name: weather
+    stub: true
   cloud:
     config:
       uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://user:password@localhost:8888}
+      
