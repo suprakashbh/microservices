@@ -1,0 +1,20 @@
+info:
+  component: Turbine MS - To Montior Microservice
+
+PREFIX:
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: 8989
+
+management:
+  port: 8990
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
