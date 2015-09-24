@@ -1,6 +1,9 @@
 server:
   port: 0
 
+info:
+  component: Weather Micro service - UP 
+  
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

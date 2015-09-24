@@ -13,13 +13,13 @@ public class Temperature {
 	
 	
 	public String getTemp() {
-		return temp+" (C)";
+		return temp;
 	}
 	public void setTemp(String temp) {
 		this.temp = temp;
 	}
 	public String getTemp_min() {
-		return temp_min+" (C)";
+		return temp_min;
 	}
 	public void setTemp_min(String temp_min) {
 		this.temp_min = temp_min;
