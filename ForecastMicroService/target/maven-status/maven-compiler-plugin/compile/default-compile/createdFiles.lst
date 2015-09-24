@@ -1,5 +1,0 @@
-com\infy\ms\rest\model\Forecast.class
-com\infy\ms\rest\fc\ForecastMsController.class
-com\infy\ms\rest\fc\ForecastMsApplication.class
-com\infy\ms\rest\model\FWeather.class
-com\infy\ms\rest\model\ForecastDetails.class
