@@ -1,8 +1,8 @@
 server:
-  port: 8765
+  port: 8777
   
 info:
-  component: Zuul Server
+  component: Zuul Edge Server
 
 endpoints:
   restart:
@@ -15,7 +15,7 @@ endpoints:
 zuul:
   ignoredServices: "*"
   routes:
-    weathercomposite:
+    weathercompositems:
       path: /weathercomposite/**
       stripPrefix: false
 ribbon:
@@ -23,7 +23,3 @@ ribbon:
     hystrixTimeout:4500
     execTime:4000
 
-logging:
-  level:
-    ROOT: INFO
-    org.springframework.web: INFO
