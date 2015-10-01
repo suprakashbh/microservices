@@ -6,7 +6,7 @@ In this Microservice POC, I used Spring Boot and Netflix OSS to implement micros
 
 Add image tag : System Landscape of microservices :
 
-![alt tag](https://raw.github.com/username/projectname/branch/path/to/img.png)
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-landscape.png)
 
 It contains three core microservices, weather, forecast and the other one which composite of weather and forecast services, called weather composite Microservice. And to support the microsrevice landscape, I used this below Netflix Infrastructure services and components :
 
@@ -172,7 +172,7 @@ Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the m
 			
 			Eureka server image with services + 2 instance image
 			
-			![alt tag](https://raw.github.com/username/projectname/branch/path/to/img.png)
+			![alt tag]()
 
 			
 			
