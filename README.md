@@ -19,16 +19,17 @@ It contains three core microservices, weather, forecast and the other one which 
 
 1. Source Code Walk through :
 
-As you can see in github, this POC have have 7 components (3 microservice and 4 infrastructure components) and each of them is build separately, so each component have their own pom.xml. This poc is also include a batch script (for windows), build-all.bat file to build all the component. 
+As you can see in github, this POC have have 7 components (3 microservice and 4 infrastructure components) and each of them  have their own pom.xml to build separately. This poc is also include a batch script (for windows), build-all.bat file to build all the component. 
 
-Each Microservice (Weather, Forecast and Weather Composite) is developed by using Spring Boot application and uses Tomcat Server.
-Spring Rest Template is used to make outgoing rest api call and Spring MVC  is used to expose service as a Rest call.So this microservices are nothing but a Spring MVC application from which rest get exposed and wrapped by Spring Boot.
+Each Microservice (Weather, Forecast and Weather Composite) is developed by using Spring Boot application and uses Tomcat Server. Spring Rest Template is used to make outgoing rest api call and Spring MVC  is used to expose service as a Rest call.So this individual microservices are nothing but a Spring MVC application from which rest get exposed and wrapped by Spring Boot.
 
-Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the microservice landscape.
+Lets concentrate on how to use Spring Cloud and Netflix OSS to build the microservice landscape.
 
-1.1 POM Dependency :
-		Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring all the necessary dependencies.
-		To use Eureka (client) and Ribbon (Load Balancer) in a microservice, just add this below dependency in your microservice pom.xml file. See in Weather,Forecast and WeatherComposite microservice pom.xml.
+1.1 POM Dependency
+
+Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring all the necessary dependencies.
+
+To use Eureka (client) and Ribbon (Load Balancer) in a microservice, just add this below dependency in your microservice pom.xml file. See in Weather,Forecast and WeatherComposite microservice pom.xml for details.
 			
 			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -36,7 +37,7 @@ Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the m
 				<version>1.0.3.RELEASE</version>
 			</dependency>`
 			
-			- To set up Eureka server, just add this below dependency in pom.xml. See EServerTest\pom.xml
+To set up Eureka server, just add this below dependency in pom.xml. See EServerTest\pom.xml
 
 			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -44,7 +45,7 @@ Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the m
 				<version>1.0.3.RELEASE</version>
 			</dependency>`
 			
-			- In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix in your project, need to add this below dependency :
+In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix in your project, need to add this below dependency :
 			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-hystrix</artifactId>
@@ -61,8 +62,9 @@ Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the m
 				<version>1.0.0.RELEASE</version>
 			</dependency> `
 			
-			As Hystrix use RabitMQ to communicate between Circuit breaker and Dashboard (monitoring application), that why you see  dependency for RabitMQ as well along with Hystrix.
-			- To set up Turbine server, you need below dependency and minimum java 8
+As Hystrix use RabitMQ to communicate between Circuit breaker and Dashboard (monitoring application), that why you see  dependency for RabitMQ as well along with Hystrix.
+
+To set up Turbine server, you need below dependency and minimum java 8
 			` 
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -70,11 +72,12 @@ Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the m
 				<version>1.0.0.RELEASE</version>
 			</dependency> `
 			
-			< TO DO >
+
 1.2 Severs :
-		Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy.
-		Eureka Server :
-			To create a Eureka Server Spring boot application just create a class like this below :
+Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy.
+	
+	Eureka Server :
+		To create a Eureka Server Spring boot application just create a class like this below :
 			` 
 			@SpringBootApplication
 			@EnableEurekaServer
