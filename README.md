@@ -76,22 +76,23 @@ To set up Turbine server, you need below dependency and minimum java 8
 			</dependency> `
 			
 
-1.2 Severs :
+1.2 Severs
+
 Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy.
 	
-	Eureka Server :
-		To create a Eureka Server Spring boot application just create a class like this below :
-			` 
-			@SpringBootApplication
+	Eureka Server
+	To create a Eureka Server Spring boot application just create a class like this below :
+			` @SpringBootApplication
 			@EnableEurekaServer
 			public class EServer {
 				public static void main(String[] args) {
 				SpringApplication.run(EServer.class, args);
 				}		
 			}`		
-			For complete and configuration see EServerTest project.
-		Zuul Server :
-			To set up a Zuul server , create a java class with @EnableZuulProxy annotation 
+	For complete and configuration see EServerTest project.
+	
+	Zuul Server
+	To set up a Zuul server , create a java class with @EnableZuulProxy annotation 
 			` @SpringBootApplication
 			  @Controller
 			  @EnableZuulProxy
@@ -101,8 +102,9 @@ Developed and configure this Infrastructure servers by using Spring Cloud and Ne
 				}
 			}`
 			
-			Zuul work as a gatekeepr and with no configuration / default configuration, it will allow / route to every service registered with Eureka.
-			In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice, see below.
+	Zuul work as a gatekeepr and with no configuration / default configuration, it will allow / route  every service 		registered with Eureka.
+	
+	In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice, see 	below.
 			
 			` zuul:
 				ignoredServices: "*"
@@ -111,11 +113,12 @@ Developed and configure this Infrastructure servers by using Spring Cloud and Ne
 				path: /weathercomposite/**
 				`
 			
-			For detail configuration see ZuulServer project.
+	For detail configuration see ZuulServer project.
 			
-		Turbine Server :
-			Turbine provides information to Hystrix Dashboard from all Hystrix Circuit Breaker and Dashboard use this information to provide graphical representation.
-			To setup turbine, add @EnableTurbineAmqp annotation :
+	Turbine Server
+	Turbine provides information to Hystrix Dashboard from all Hystrix Circuit Breaker and Dashboard use this information 	to provide graphical representation.
+	
+	To setup turbine, add @EnableTurbineAmqp annotation :
 			
 			` @SpringBootApplication
 				@EnableTurbineAmqp
