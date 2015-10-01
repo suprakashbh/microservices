@@ -14,9 +14,8 @@ It contains three core microservices, weather, forecast and the other one which 
 - Netflix Eureka : Service Discovery Server
 - Netflix Ribbon : Dynamic Routing and Load Balancer
 - Netflix Zuul : Edge Server / Gate keeper 
-- Turbine and Hystrix Dashboard : Hystrix
+- Turbine and Hystrix Dashboard
 - Hystrix : Circuit breaker
-
 
 1. Source Code Walk through :
 
@@ -28,10 +27,8 @@ Spring Rest Template is used to make outgoing rest api call and Spring MVC  is u
 Now , lets concentrate on how to use Spring Cloud and Netflix OSS to build the microservice landscape.
 
 1.1 POM Dependency :
-		Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring 
-        all the necessary dependencies.
-
-			- to use Eureka (client) and Ribbon (Load Balancer) in a microservice, just add this below dependency in your microservice pom.xml file. See in Weather,Forecast and WeatherComposite microservice pom.xml.
+		Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring all the necessary dependencies.
+		To use Eureka (client) and Ribbon (Load Balancer) in a microservice, just add this below dependency in your microservice pom.xml file. See in Weather,Forecast and WeatherComposite microservice pom.xml.
 			
 			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
