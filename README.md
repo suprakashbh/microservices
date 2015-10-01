@@ -45,17 +45,20 @@ To set up Eureka server, just add this below dependency in pom.xml. See EServerT
 				<version>1.0.3.RELEASE</version>
 			</dependency>`
 			
-In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix in your project, need to add this below dependency :
+In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix in your project, need to add this below dependency
+
 			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-hystrix</artifactId>
 				<version>1.0.0.RELEASE</version>
 			</dependency>
+			
 			 <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 				<version>1.0.0.RELEASE</version>
 			</dependency>    
+			
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
@@ -65,8 +68,8 @@ In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix
 As Hystrix use RabitMQ to communicate between Circuit breaker and Dashboard (monitoring application), that why you see  dependency for RabitMQ as well along with Hystrix.
 
 To set up Turbine server, you need below dependency and minimum java 8
-			` 
-			<dependency>
+			
+			` <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-turbine-amqp</artifactId>
 				<version>1.0.0.RELEASE</version>
