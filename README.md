@@ -78,35 +78,40 @@ To set up Turbine server, you need below dependency and minimum java 8
 
 1.2 Severs
 
-Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy.
+Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy
 	
-	Eureka Server
-	To create a Eureka Server Spring boot application just create a class like this below :
-			` @SpringBootApplication
+Eureka Server
+
+To create a Eureka Server by using Spring boot application just create a class like this below
+
+		` 	@SpringBootApplication
 			@EnableEurekaServer
 			public class EServer {
-				public static void main(String[] args) {
+			public static void main(String[] args) {
 				SpringApplication.run(EServer.class, args);
 				}		
-			}`		
-	For complete and configuration see EServerTest project.
+			}`
+			
+For complete and configuration see EServerTest project.
 	
-	Zuul Server
+Zuul Server
+
 	To set up a Zuul server , create a java class with @EnableZuulProxy annotation 
-			` @SpringBootApplication
-			  @Controller
-			  @EnableZuulProxy
-			  public class ZuulServerApplication {
-				public static void main(String[] args) {
+	
+		` 	@SpringBootApplication
+			@Controller
+			@EnableZuulProxy
+			public class ZuulServerApplication {
+			public static void main(String[] args) {
 					new SpringApplicationBuilder(ZuulServerApplication.class).web(true).run(args);
 				}
 			}`
 			
-	Zuul work as a gatekeepr and with no configuration / default configuration, it will allow / route  every service 		registered with Eureka.
+Zuul work as a gatekeepr and with no configuration / default configuration, it will allow / route  every service registered with Eureka.
 	
-	In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice, see 	below.
+In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice, see 	below.
 			
-			` zuul:
+		` 	zuul:
 				ignoredServices: "*"
 				routes:
 				weathercompositems:
