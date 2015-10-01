@@ -1,10 +1,11 @@
-In this Microservice POC, I used Spring Boot and Netflix OSS to implement microservice and try to cover few core parts of microservice architecture
+In this Microservice POC, I used Spring Boot and Netflix OSS to implement microservice and try to cover few core parts of microservice landscape
+
 - Service Discovery
 - Routing
 - Load balancer 
 - Gate keeper
 
-Add image tag : System Landscape of microservices :
+System Landscape of microservice of this POC looks like this below:
 
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-landscape.png)
 
@@ -18,6 +19,7 @@ It contains three core microservices, weather, forecast and the other one which 
 
 
 1. Source Code Walk through :
+
 As you can see in github, this POC have have 7 components (3 microservice and 4 infrastructure components) and each of them is build separately, so each component have their own pom.xml. This poc is also include a batch script (for windows), build-all.bat file to build all the component. 
 
 Each Microservice (Weather, Forecast and Weather Composite) is developed by using Spring Boot application and uses Tomcat Server.
