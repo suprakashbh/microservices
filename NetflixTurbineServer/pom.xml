@@ -36,10 +36,54 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-turbine-amqp</artifactId>
 			<version>1.0.0.RELEASE</version>
+		</dependency>	
+		<!--
+		This two below dependency added for 
+		1. com.netflix.servo.monitor.Counter
+		2. Instance key class presents in turbine-core 2.0 not in 1.0
+		3.com.netflix.config.DynamicPropertyFactory
+		4. org.apache.commons.configuration.Configuration
+		5. org.apache.commons.lang.text.StrLookup
+		6. org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager
+		7. org.apache.http.util.Args
+		-->
+		<dependency>
+			<groupId>com.netflix.turbine</groupId>
+			<artifactId>turbine-core</artifactId>
+			<version>2.0.0-DP.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.netflix.servo</groupId>
+			<artifactId>servo-core</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.archaius</groupId>
+			<artifactId>archaius-core</artifactId>
+			<version>0.6.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.3</version>
+		</dependency>
 		
-
+		<!-- End missing dependency -->
 
 	</dependencies>
 
