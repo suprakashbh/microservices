@@ -174,18 +174,21 @@ In Netflix OSS microservice architecture , its the responsibility of client / co
 		 `
 2. Start the Microservice Landscape :
 
-		To run all the component of Microservice landscape, there is a batch script start-all.bat. To run the all the component individually, follow this below steps :
-		
-		- To start the servers (Eureka and Zuul), execute this below 
-				microservices\EServerTest\java -jar target/NetflixEurekaServer-1.0.jar
-				microservices\ZuulServer\java -jar target/NetflixZuulServer-1.0.jar
-				microservices\NetflixTurbineServer\java -jar target/NetflixTurbineServer-1.0.jar
-				microservices\HystrixDashboard\java -jar target/HystrixDashboard-1.0.jar
+To run all the component of Microservice landscape, there is a batch script start-all.bat. To run the all the component individually, follow this below steps:
+	` 
+- To start the servers (Eureka and Zuul), execute this below 
+- 
+		microservices\EServerTest\java -jar target/NetflixEurekaServer-1.0.jar
+		microservices\ZuulServer\java -jar target/NetflixZuulServer-1.0.jar
+		microservices\NetflixTurbineServer\java -jar target/NetflixTurbineServer-1.0.jar
+		microservices\HystrixDashboard\java -jar target/HystrixDashboard-1.0.jar
 				
-			When the above server are started, launch the three microservices one by one :	
-				microservices\WeatherMicroService\java -jar target/WeatherMicroService-1.0.jar
-				microservices\ForecastMicroService\java -jar target/ForecastMicroService-1.0.jar
-				microservices\WeatherMCompositeService\java -jar target/WeatherMCompositeService-1.0.jar
+When the above server are started, launch the three microservices one by one :
+
+		microservices\WeatherMicroService\java -jar target/WeatherMicroService-1.0.jar
+		microservices\ForecastMicroService\java -jar target/ForecastMicroService-1.0.jar
+		microservices\WeatherMCompositeService\java -jar target/WeatherMCompositeService-1.0.jar
+	`
 			
 			Eureka server image with services + 2 instance image
 			
