@@ -138,8 +138,10 @@ To setup turbine, add @EnableTurbineAmqp annotation:
 		
 1.3 Registered Other Component with Eureka Server
 		
-		To registered microservice or other component with Eureka server, just add @EnableDiscoveryClient to the Spring Boot application.
-		` 
+To registered microservice or other component with Eureka server, just add @EnableDiscoveryClient 
+to the Spring Boot application
+		
+		` 	
 		@SpringBootApplication
 		@EnableCircuitBreaker
 		@EnableDiscoveryClient
@@ -147,13 +149,13 @@ To setup turbine, add @EnableTurbineAmqp annotation:
 			public static void main(String[] args) {
 				SpringApplication.run(WeatherServiceClientApplication.class, args);
 			}
-		} `
-		For detail example see Weather, Forecast and WeatherComposite microservice Project.
+		}	`
+
+For detail example see Weather, Forecast and WeatherComposite microservice Project.
 		
 1.4 Use load balancer Ribbon from Microservice
 		
-		In Netflix OSS microservice architecture , its the responsibility of client / consumer to do the load balancing. To look up and call any 
-		microservice use Ribbon component, see below and for full example see WeatherComposite Microservice.
+In Netflix OSS microservice architecture , its the responsibility of client / consumer to do the load balancing. To look up and call any microservice use Ribbon component, see below and for full example see WeatherComposite Microservice.
 		` 
 		@Autowired
 		private LoadBalancerClient loadBalancer;
@@ -167,7 +169,8 @@ To setup turbine, add @EnableTurbineAmqp annotation:
 			
 		*****	
 		String furl = furi.toString() + "/forecast/" + city;
-		Forecast forecast = restTemplate.getForObject(furl, Forecast.class);	
+		Forecast forecast = restTemplate.getForObject(furl, Forecast.class);
+			`
 		 `
 2. Start the Microservice Landscape :
 
