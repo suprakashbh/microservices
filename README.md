@@ -156,7 +156,7 @@ For detail example see Weather, Forecast and WeatherComposite microservice Proje
 1.4 Use load balancer Ribbon from Microservice
 		
 In Netflix OSS microservice architecture , its the responsibility of client / consumer to do the load balancing. To look up and call any microservice use Ribbon component, see below and for full example see WeatherComposite Microservice.
-		` 
+
 		@Autowired
 		private LoadBalancerClient loadBalancer;
 		*****
@@ -171,13 +171,11 @@ In Netflix OSS microservice architecture , its the responsibility of client / co
 		String furl = furi.toString() + "/forecast/" + city;
 		Forecast forecast = restTemplate.getForObject(furl, Forecast.class);
 			`
-		 `
 2. Start the Microservice Landscape :
 
 To run all the component of Microservice landscape, there is a batch script start-all.bat. To run the all the component individually, follow this below steps:
 	` 
-- To start the servers (Eureka and Zuul), execute this below 
-- 
+To start the servers (Eureka and Zuul), execute this below 
 		microservices\EServerTest\java -jar target/NetflixEurekaServer-1.0.jar
 		microservices\ZuulServer\java -jar target/NetflixZuulServer-1.0.jar
 		microservices\NetflixTurbineServer\java -jar target/NetflixTurbineServer-1.0.jar
@@ -190,9 +188,11 @@ When the above server are started, launch the three microservices one by one :
 		microservices\WeatherMCompositeService\java -jar target/WeatherMCompositeService-1.0.jar
 	`
 			
-			Eureka server image with services + 2 instance image
+In the Eureka Server (Service discovery), we can see our three micro services,the edge server and Turbine server instances.
+As per Eureka server configuration file, its running on 8761 port (see src/main/resources/application.yml file under EServerTest project).
+(http://localhost:8761):
 			
-			![alt tag]()
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-screenshot.png)
 
 			
 			
