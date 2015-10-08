@@ -96,7 +96,7 @@ For complete and configuration see EServerTest project.
 	
 Zuul Server
 
-	To set up a Zuul server , create a java class with @EnableZuulProxy annotation 
+To set up a Zuul server,create a java class with @EnableZuulProxy annotation 
 	
 		` 	@SpringBootApplication
 			@Controller
@@ -109,23 +109,24 @@ Zuul Server
 			
 Zuul work as a gatekeepr and with no configuration / default configuration, it will allow / route  every service registered with Eureka.
 	
-In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice, see 	below.
+In this POC we have configured Zuul (in application.yml) to allow to route to only WeatherComposite microservice,see 	below.
 			
 		` 	zuul:
 				ignoredServices: "*"
 				routes:
 				weathercompositems:
 				path: /weathercomposite/**
-				`
+			`
 			
-	For detail configuration see ZuulServer project.
+For detail configuration see ZuulServer project.
 			
-	Turbine Server
-	Turbine provides information to Hystrix Dashboard from all Hystrix Circuit Breaker and Dashboard use this information 	to provide graphical representation.
+Turbine Server
+
+Turbine provides information to Hystrix Dashboard from all Hystrix Circuit Breaker and Dashboard use this information to provide graphical representation.
 	
-	To setup turbine, add @EnableTurbineAmqp annotation :
+To setup turbine, add @EnableTurbineAmqp annotation:
 			
-			` @SpringBootApplication
+			` 	@SpringBootApplication
 				@EnableTurbineAmqp
 				@EnableDiscoveryClient
 				public class TurbineServerApp {
@@ -133,7 +134,7 @@ In this POC we have configured Zuul (in application.yml) to allow to route to on
 					public static void main(String[] args) {
 						new SpringApplicationBuilder(TurbineServerApp.class).run(args);
 					}
-				}`
+				}	`
 		
 1.3 Registered Other Component with Eureka Server
 		
