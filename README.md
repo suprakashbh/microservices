@@ -1,4 +1,4 @@
-In this Microservice POC, I used Spring Boot and Netflix OSS to implement microservice and try to cover few core parts of microservice landscape
+In this Microservice POC, I used Spring Boot and Netflix OSS to implement microservice and try to cover below few core parts of microservice landscape :
 
 - Service Discovery
 - Routing
@@ -17,17 +17,17 @@ It contains three core microservices, weather, forecast and the other one which 
 - Turbine and Hystrix Dashboard
 - Hystrix : Circuit breaker
 
-1. Source Code Walk through :
+# Source Code Walk through :
 
 As you can see in github, this POC have have 7 components (3 microservice and 4 infrastructure components) and each of them  have their own pom.xml to build separately. This poc is also include a batch script (for windows), build-all.bat file to build all the component. 
 
-Each Microservice (Weather, Forecast and Weather Composite) is developed by using Spring Boot application and uses Tomcat Server. Spring Rest Template is used to make outgoing rest api call and Spring MVC  is used to expose service as a Rest call.So this individual microservices are nothing but a Spring MVC application from which rest get exposed and wrapped by Spring Boot.
+Each Microservice (Weather, Forecast and Weather Composite) is developed by using Spring Boot application and uses Tomcat Server. Spring Rest Template is used to make outgoing rest api call and Spring MVC  is used to expose service as a Rest call.So this individual microservices are nothing but a Spring MVC application from which rest get exposed and wrapped by Spring Boot application.
 
-Lets concentrate on how to use Spring Cloud and Netflix OSS to build the microservice landscape.
+Now lets see, how to use Spring Cloud and Netflix OSS to build the microservice landscape.
 
-1.1 POM Dependency
+### POM Dependency
 
-Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring all the necessary dependencies.
+Its very easy to use Eureka, Ribbon, Zuul and Hystrix Dashboard in Spring clod by using Pom. Just add this below starter dependency , it will bring all the necessary other dependencies.
 
 To use Eureka (client) and Ribbon (Load Balancer) in a microservice, just add this below dependency in your microservice pom.xml file. See in Weather,Forecast and WeatherComposite microservice pom.xml for details.
 			
@@ -65,7 +65,7 @@ In WeatherComposite microservice have Hystrix as circuit breaker. To use Hystrix
 				<version>1.0.0.RELEASE</version>
 			</dependency> `
 			
-As Hystrix use RabitMQ to communicate between Circuit breaker and Dashboard (monitoring application), that why you see  dependency for RabitMQ as well along with Hystrix.
+As Hystrix use RabitMQ to communicate between Circuit breaker and Dashboard (monitoring application), thats why you see  dependency for RabitMQ as well along with Hystrix. And also make sure you have RabitMq installed in your machine, else Turbine will not work.
 
 To set up Turbine server, you need below dependency and minimum java 8
 			
@@ -76,7 +76,7 @@ To set up Turbine server, you need below dependency and minimum java 8
 			</dependency> `
 			
 
-1.2 Severs
+### Severs
 
 Developed and configure this Infrastructure servers by using Spring Cloud and Netflix OSS is super easy
 	
@@ -136,7 +136,7 @@ To setup turbine, add @EnableTurbineAmqp annotation:
 					}
 				}	`
 		
-1.3 Registered Other Component with Eureka Server
+### Registered Other Component with Eureka Server
 		
 To registered microservice or other component with Eureka server, just add @EnableDiscoveryClient 
 to the Spring Boot application
@@ -153,7 +153,7 @@ to the Spring Boot application
 
 For detail example see Weather, Forecast and WeatherComposite microservice Project.
 		
-1.4 Use load balancer Ribbon from Microservice
+###  Use load balancer Ribbon from Microservice
 		
 In Netflix OSS microservice architecture , its the responsibility of client / consumer to do the load balancing. To look up and call any microservice use Ribbon component, see below and for full example see WeatherComposite Microservice.
 
@@ -171,9 +171,9 @@ In Netflix OSS microservice architecture , its the responsibility of client / co
 		String furl = furi.toString() + "/forecast/" + city;
 		Forecast forecast = restTemplate.getForObject(furl, Forecast.class);
 			`
-2. Start the Microservice Landscape :
+# Start the Microservice Landscape :
 
-To run all the component of Microservice landscape, there is a batch script start-all.bat, which will start all the servers and the microservices. To run the all the component individually, follow this below steps :
+To run all the component of Microservice landscape, there is a batch script start-all.bat, which will start all the servers and the microservices.Now remember, for Turbine Java 8 is minimum, so make sure you have Java 8 installed in your machine before start start turbine.To run the all the component individually, follow this below steps :
  
 To start the servers (Eureka and Zuul), execute this :
 
@@ -191,7 +191,7 @@ When the above server are started, launch the three microservices one by one :
 	`
 			
 In the Eureka Server (Service discovery), we can see our three micro services,the edge server and Turbine server instances.
-As per Eureka server configuration file, its running on 8761 port (see src/main/resources/application.yml file under EServerTest project).
+As per Eureka server configuration file, its running on 8761 port (see `src/main/resources/application.yml` file under EServerTest project).
 (http://localhost:8761):
 			
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-screenshot.png)
@@ -201,7 +201,7 @@ To find out more details (like how many instances, port info, ip address etc) ab
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-apps.png)
 			
 
-Now we will test our microservices by hit directly and via Edge server. By above /eureka/apps URL you will get all the individual microservice port and ip address and also Edge server ip address.
+Now we will test our microservices by hit directly and via Edge server. By above `/eureka/apps` URL you will get all the individual microservice port and ip address and also Edge server ip address.
 
 When I was doing testing, Forecast microservice was running in below address :
 http://localhost:53092/forecast/mumbai (forecast for mumbai city)
@@ -223,7 +223,7 @@ Now in the above example we hit those microservices directly. But outside world 
 http://localhost:8777/weathercomposite/mumbai  (via gate keepr Zuul Edge Server)
 
 
-In this example we also used Netflix Hystrix Circuit Breaker.If a microservice service doesn’t respond due to error , Hystrix Circuit breaker can redirect the call to an internal fallback method. In this example Weather composite microservice calls weather and forecast service with circuit breaker and fallback method. See this class (with highlight todo) for more details.
+In this example we also used Netflix Hystrix Circuit Breaker.If a microservice service doesn’t respond due to error , Hystrix Circuit breaker can redirect the call to an internal fallback method. In this example Weather composite microservice calls weather and forecast service with circuit breaker and fallback method. See this class `com.infy.ms.client.weather.WeatherServiceIntegration` for more details.
 If a service repeatedly fails to respond, Hystrix will open the circuit and will call fallback method without even try to call the service on every subsequent call until the service is available again. To determine wether the service is available again Hystrix allow some requests to try out the service even if the circuit is open.
 
 Now this circuit breaker which are in composite service provides information to Turbine Server via Rabit MQ. Netflix Dashboard will use this information to provide graphical presentation. This informations are very useful to monitor the individual microservices. Without RabitMQ , Turbine will not work and its compatible with Java 8 only.
@@ -233,7 +233,7 @@ Go to the url http://localhost:7979 (as Netflix Dashboard configured to run on 7
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/Netflix-Dashboard-apps.png)
 
 
-And Dashboard and Turbine in Action :
+###  And Dashboard and Turbine in Action :
 
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/Netflix-Dashboard-Turbine-apps.png)
 
