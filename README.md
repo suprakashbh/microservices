@@ -173,7 +173,7 @@ In Netflix OSS microservice architecture , its the responsibility of client / co
 			`
 2. Start the Microservice Landscape :
 
-To run all the component of Microservice landscape, there is a batch script start-all.bat. To run the all the component individually, follow this below steps :
+To run all the component of Microservice landscape, there is a batch script start-all.bat, which will start all the servers and the microservices. To run the all the component individually, follow this below steps :
  
 To start the servers (Eureka and Zuul), execute this :
 
@@ -196,12 +196,48 @@ As per Eureka server configuration file, its running on 8761 port (see src/main/
 			
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-screenshot.png)
 
+To find out more details (like how many instances, port info, ip address etc) about micro services, use this below eureka rest api  http://localhost:8761/eureka/apps. In this below example you can see details about Forecast microservice:
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-apps.png)
 			
-			
-			Hystrix Dashboard and Turbine Monitoring screen image :
-			
-			enter url + image
-			
-			call microservice individually 
-			
-			call composite service via Zuul
+
+Now we will test our microservices by hit directly and via Edge server. By above /eureka/apps URL you will get all the individual microservice port and ip address and also Edge server ip address.
+
+When I was doing testing, Forecast microservice was running in below address :
+http://localhost:53092/forecast/mumbai (forecast for mumbai city)
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-forecast.png)
+
+The URL address for Weather microservice :
+http://localhost:53110/weather/pune (weather details for pune city)
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-weather.png)
+
+And the last composite one, which combine the details of Forecast and weather (used ribbon load balancer and circuit breaker) runs on this below port :
+http://localhost:60980/weathercomposite/mumbai
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-composite-zuul.png)
+
+Now in the above example we hit those microservices directly. But outside world will come via Edge Server or Gatekeepr. Now in this example, Zuul Edge Server is configured to run on 8777 port and only allow weather composite service to access. To access the weather composite service, the URL is very much similar like above, only you have to use port 8777.
+
+http://localhost:8777/weathercomposite/mumbai  (via gate keepr Zuul Edge Server)
+
+
+In this example we also used Netflix Hystrix Circuit Breaker.If a microservice service doesn’t respond due to error , Hystrix Circuit breaker can redirect the call to an internal fallback method. In this example Weather composite microservice calls weather and forecast service with circuit breaker and fallback method. See this class (with highlight todo) for more details.
+If a service repeatedly fails to respond, Hystrix will open the circuit and will call fallback method without even try to call the service on every subsequent call until the service is available again. To determine wether the service is available again Hystrix allow some requests to try out the service even if the circuit is open.
+
+Now this circuit breaker which are in composite service provides information to Turbine Server via Rabit MQ. Netflix Dashboard will use this information to provide graphical presentation. This informations are very useful to monitor the individual microservices. Without RabitMQ , Turbine will not work and its compatible with Java 8 only.
+
+Go to the url http://localhost:7979 (as Netflix Dashboard configured to run on 7979 port, see application.yml file) in a web browser, enter the url http://localhost:8989/turbine/turbine.stream (turbine configured to run on 8989) and click on the “Monitor Stream” – button):
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/Netflix-Dashboard-apps.png)
+
+
+And Dashboard and Turbine in Action :
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/Netflix-Dashboard-Turbine-apps.png)
+
+
+
+
+		
