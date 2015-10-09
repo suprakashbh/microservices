@@ -196,8 +196,34 @@ As per Eureka server configuration file, its running on 8761 port (see src/main/
 			
 ![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-screenshot.png)
 
+To find out more details (like how many instances, port info, ip address etc) about micro services, use this below eureka rest api  http://localhost:8761/eureka/apps. In this below example you can see details about Forecast microservice:
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/EServer-apps.png)
 			
-			
+
+Now we will test our microservices by hit directly and via Edge server. By above /eureka/apps URL you will get all the individual microservice port and ip address and also Edge server ip address.
+
+When I was doing testing, Forecast microservice was running in below address :
+http://localhost:60959/forecast/mumbai (forecast for mumbai city)
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-forecast.png)
+
+The URL address for Weather microservice :
+http://localhost:60958/weather/pune (weather details for pune city)
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-weather.png)
+
+And the last composite one, which combine the details of Forecast and weather (used ribbon load balancer and circuit breaker) runs on this below port :
+http://localhost:60980/weathercomposite/mumbai
+
+![alt tag](https://github.com/suprakashbh/microservices/blob/master/ms-composite-zuul.png)
+
+Now in the above example we hit those microservices directly. But outside world will come via Edge Server or Gatekeepr. Now here our Zuul Edge Server is configured to run on 8777 port and only allow weather composite service to access. To access the weather composite service, the URL is very much similar like above, only you have to use port 8777.
+
+http://localhost:8777/weathercomposite/mumbai  (via gate keepr Zuul Edge Server)
+
+
+
 			Hystrix Dashboard and Turbine Monitoring screen image :
 			
 			enter url + image
