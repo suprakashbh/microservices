@@ -173,7 +173,7 @@ In Netflix OSS microservice architecture , its the responsibility of client / co
 			`
 2. Start the Microservice Landscape :
 
-To run all the component of Microservice landscape, there is a batch script start-all.bat. To run the all the component individually, follow this below steps :
+To run all the component of Microservice landscape, there is a batch script start-all.bat, which will start all the servers and the microservices. To run the all the component individually, follow this below steps :
  
 To start the servers (Eureka and Zuul), execute this :
 
