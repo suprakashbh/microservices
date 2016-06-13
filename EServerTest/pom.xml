@@ -40,6 +40,12 @@
     
 
 	</dependencies>
+	
+	<properties>
+    	<docker.image.prefix>infyio</docker.image.prefix>
+        <java.version>1.7</java.version>
+		<docker.resource.targetPath></docker.resource.targetPath>
+    </properties>
 
 	<build>
 		<sourceDirectory>${basedir}/src </sourceDirectory>
@@ -60,6 +66,53 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+			<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.2.3</version>
+			<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>${docker.resource.targetPath}</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+			</configuration>
+	     </plugin>
+	     <plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>2.7</version>
+		        <dependencies>
+		            <dependency>
+		                <groupId>org.apache.maven.shared</groupId>
+		                <artifactId>maven-filtering</artifactId>
+		                <version>1.3</version>
+		            </dependency>
+          		</dependencies>
+		        <executions>
+		          <execution>
+		            <id>copy-resources</id>
+		            <!-- here the phase you need -->
+		            <phase>validate</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>${basedir}/target</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>src/main/docker</directory>
+		                  <filtering>true</filtering>
+		                </resource>
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
+		      </plugin>
+            
         </plugins>
     </build>
 	
