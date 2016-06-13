@@ -72,7 +72,7 @@
 				<version>0.2.3</version>
 			<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/resources/docker/</dockerDirectory>
+					<dockerDirectory>src/main/resources/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>${docker.resource.targetPath}</targetPath>
@@ -104,7 +104,7 @@
 		              <outputDirectory>${basedir}/target</outputDirectory>
 		              <resources>          
 		                <resource>
-		                  <directory>src/main/docker</directory>
+		                  <directory>src/main/resources/docker</directory>
 		                  <filtering>true</filtering>
 		                </resource>
 		              </resources>              
